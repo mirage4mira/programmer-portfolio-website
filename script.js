@@ -11,12 +11,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 var mywork = [
     {
+        "name": "Programmer Portfolio Website",
+        "description": "A responsive portfolio website to introduce myself, showcase my works and resume, and includes a form to contact me. Built with HTML, CSS, Javascript and Bootstrap.",
+        "tags": ["Javascript", "HTML/CSS", "Bootstrap"],
+        "image_path": "images/portfolio-website.png",
+        "github_link": "https://github.com/mirage4mira/programmer-portfolio-website",
+        "preview_link": "https://www.davidngu.com"
+    },
+    {
         "name": "Jobify MERN Stack App",
         "description": "A job posting website where users can post job ads, search for available jobs, and see stats of all the job posting. Built with MERN stack.",
         "tags": ["React", "HTML/CSS", "Mongodb", "Express"],
         "image_path": "images/jobify.png",
         "github_link": "https://github.com/mirage4mira/jobify",
         "preview_link": "https://jobify-ahhl.onrender.com"
+    },
+    {
+        "name": "Library Android App",
+        "description": "A simple book listing app where users can add, view, update or delete books. Built with Java.",
+        "tags": ["Java", "Android"],
+        "image_path": "images/library.png",
+        "github_link": "https://github.com/mirage4mira/android-library-app",
+        "preview_link": "images/library.gif"
     },
     {
         "name": "Chat App Website",
@@ -107,6 +123,36 @@ $(document).ready(function () {
         var successMsg = $.parseHTML(`<div class="contact-form-submitted">Form successfully submitted!</div>`);
         $(successMsg).appendTo(".contact-form-block").hide().fadeIn(500);
     });
+
+
+    $(".card").click(function(){
+        
+        var heading = $(this).find(".card-title");
+        $("#myWorkModal .modal-body").append(heading.clone().removeClass("card-title").css({"text-align":"center","margin-bottom":"15px"}));
+
+        var image = $(this).find(".card-img-top");
+        $("#myWorkModal .modal-body").append(image.clone().removeClass("card-img-top").css({"max-height": "60vh","object-fit":"contain","margin-bottom":"15px","border-radius":"4px"}));
+        
+        var tags = $(this).find(".card-tags");
+        $("#myWorkModal .modal-body").append(tags.clone().css({"justify-content":"center"}));
+
+        var text = $(this).find(".card-text");
+        $("#myWorkModal .modal-body").append(text.clone().css({"text-align":"center","margin-bottom":"5px"}));
+
+        var previewBtn = $(this).find(".preview-btn");
+        $("#myWorkModal .modal-footer").append(previewBtn.clone());
+
+        var githubRepoBtn = $(this).find(".github-repo-btn");
+        $("#myWorkModal .modal-footer").append(githubRepoBtn.clone());
+
+        
+        $("#myWorkModal").modal("show");
+    });
+
+    $("#myWorkModal").on('hide.bs.modal', function(){
+        $("#myWorkModal .modal-body").html("");
+        $("#myWorkModal .modal-footer").html("");
+    });
 });
 
 
@@ -115,7 +161,7 @@ function createWorkCard({ image_path, name, description, preview_link, github_li
     html = $.parseHTML(`
     <div class="col-lg-4 col-md-6 col-sm-8 col-12 card-block">
         <div class="card">
-    <img class="card-img-top" src="${image_path}" alt="${name}">
+        <img class="card-img-top" src="${image_path}" alt="${name}">
     <div class="card-body">
         <div class="card-body-top">
         <h5 class="card-title">${name}</h5>
@@ -126,7 +172,7 @@ function createWorkCard({ image_path, name, description, preview_link, github_li
         </div>
       <div class="row">
         <div class="col-6">
-        <a href="${preview_link}" target="_blank" class="btn btn-sm btn-light"><img src="images/svg/preview.svg">Preview</a>
+        <a href="${preview_link}" target="_blank" class="btn btn-sm btn-light preview-btn"><img src="images/svg/preview.svg">Preview</a>
         </div>
         <div class="col-6">
         ${github_link ? `<a href="${github_link}" target="_blank" class="btn btn-sm btn-outline-light github-repo-btn"><img src="images/svg/github-repo.svg" class="github-repo-svg">Github Repo</a>` : ''}

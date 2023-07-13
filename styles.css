@@ -104,6 +104,13 @@ p.description.mb-30 {
     border: none;
     height: 100%;
     z-index: 1;
+    cursor: pointer;
+    padding-top: 5px;
+    transition: all 0.15s ease;
+}
+
+.card:hover{
+    transform: translateY(-5px);
 }
 
 
@@ -495,6 +502,47 @@ li.nav-item {
     color: var(--green);
 }
 
+#myWorkModal{
+    z-index: 1000000;
+    backdrop-filter: blur(2px);
+}
+
+
+#myWorkModal .modal-content{
+    background-color: var(--darkBlue2);
+}
+
+#myWorkModal .close{
+ color: #FFFFFF;
+    text-shadow: none;
+    opacity: 0.95;
+    transition: all 0.2s ease;
+}
+
+#myWorkModal .close:hover{
+       opacity: 0.8;
+}
+#myWorkModal .close:focus{
+    outline: none;
+}
+
+
+.modal-header{
+    border-bottom: 0px;
+}
+
+.modal-body{
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-footer{
+    border-top: 0px;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+}
 @media (max-width: 992px) {
     .navbar.navbar-expand-lg>.container {
         padding-left: 60px;
